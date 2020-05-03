@@ -1,0 +1,80 @@
+- Spring is a collection of about 30 projects
+- in it's core we have the:
+    - Spring Inversion Control Container
+        - control how components get hired up
+        - this is related with dependency injection
+- 2 ways of configure spring:
+    - xml
+        - legacy
+    - java
+        - this is the way to go now
+- use spring MVC
+    - 
+
+- use JPA (Java persistance api)
+    - Hibernate as the ORM
+
+- Spring boot
+
+- use of junit and spring nbc test
+
+- use mockito to mock objects for testing
+
+- Central to spring core and spring in general are spring beans
+- contrary to ejb, spring is designed to use POJO's
+    - this pojo's are the spring beans
+
+- the spring framework naturally encourages adhering to the SRP
+    - single responsibility principle
+
+- dependency injection is also a great strength in the spring framework
+    - the dependent objects are injected into classes
+    - a good example is a web controller handling a form post:
+        - following the srp principle, we don't want the controller to 
+        interact with the database
+        - instead we inject a service class in the controller that will
+        handle the database
+        - the controller calls the necessary methods of that service class
+        - database connection, connection pooling and which tables to handle, is 
+        not a concern of the controller
+        - the service doesn't need to know anything about the request
+        - the request could be a form post or a json, it doesn't matter for the service
+        because the controller takes care of that
+
+- another core concept of the Spring Framework is Inversion of Control (IoC)
+    - spring uses this concept to manage the software components and the injection
+    of those components into dependent objects
+    - IoC is the actual injection of dependencies
+
+- with DI and IoC objects will be composed to be loosely coupled and 
+    each one will have a specific purpose
+
+- when testing the controller we can inject mock database services that
+later on, in production, will be real ones
+
+- changes in the database will not affect the controller
+
+- we configure the spring framework by using the SpEL (spring expression language)
+
+spring core:
+    - beans
+    - core
+    - context
+    - SpEL
+
+- major spring projects:
+    - Spring MVC
+        - build java based web applications
+    - Spring Data
+        - make persistence to a datastore agnostic
+        - common api layer to use all kinds of databases:
+            - relational
+            - no-sql
+            - map-reduce applications
+    - Spring Security
+    - Spring boot
+        - rapid application development Framework
+    - Spring batch
+        - for batch processing
+    - Spring integration
+        - makes easy to introduce message based architecture

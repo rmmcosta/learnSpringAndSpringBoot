@@ -1,0 +1,45 @@
+- requirements:
+    - java jdk
+    - maven (mvn -v)
+    - intellij idea
+    - git
+
+@Component
+to register classes as spring beans
+
+@SpringBootApplication
+the main app where we can initialize the ApplicationContext
+and start adding and using components
+- for example
+    - @Component
+    class HelloWorld{
+
+    }
+    - on the application class
+    ApplicationContext ctx = SpringApplication.run(DemoApplication.class,args);
+    HelloWorld helloWorld = (HelloWorld) ctx.getBean("helloWorld");
+
+- spring profiles
+    - default profile
+
+- dependency injection with spring:
+    - the spring framework determines in runtime 
+    which dependencies should be injected into your classes
+    in runtime
+    - inversion of control
+
+- dependency injection is preparing the class to receive the dependencies
+another one is how those dependencies are injected
+    - dependency injection is the coding method
+    - IoC is the runtime method
+
+- types of dependency injection:
+    - constructor
+    - setter
+        - often preferred by spring applications
+    - interface
+        - part of s.o.l.i.d principles
+            - code to an interface not to an implementation
+        - different implementations can be injected to support different
+        behaviors
+        - for example inject mocks for unit testing

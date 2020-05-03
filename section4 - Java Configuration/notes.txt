@@ -1,0 +1,13 @@
+- components scan
+    - if components are in a different package outside the package
+    where the current application class is
+    - we can use @ComponentScan("package1")
+    this annotation before the application class
+
+- the java configuration to configure beans is better for situations
+where you can't use @Component and @Profile because you don't have access to the code
+You are using 3rd party libraries
+
+- in spring is possible to wire up the factory pattern
+    - commonly seen when we configure databases
+    or jms (java message service) connections
