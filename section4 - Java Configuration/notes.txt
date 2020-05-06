@@ -11,3 +11,11 @@ You are using 3rd party libraries
 - in spring is possible to wire up the factory pattern
     - commonly seen when we configure databases
     or jms (java message service) connections
+
+- the autowire will wire the methods by type
+    - this means that if we have more than one bean of the same type
+    we need to use @Primary or @Qualifier or @Profile to narrow down to one bean
+- in each given moment spring must know exactly which bean should be wired.
+
+- we can also wire by name
+in that case by using the qualifier

@@ -1,0 +1,38 @@
+- xml spring configuration use to use the DTD (document type definition) style
+but now they use XML Schema-base 
+- DTD
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+<!-- bean definitions here -->
+
+</beans>
+
+- XML-Schema
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+
+</beans>
+
+
+- we need to tell in the xml-schema the where the components are
+    - for that we use the 
+    <context:component-scan base-package="com.rmmcosta.XMLConfiguration"/>
+
+- in the spring boot app we need to import this resource:
+    - @ImportResource("classpath:spring/spring-config.xml")
+
+- when we have a factory we can use the factory-bean and factory-method in 
+the xml configuration
+
+- in a controller we can set the properties to tell which bean should be considered
+for each property
+    - and the properties are the attributes of the class controller
