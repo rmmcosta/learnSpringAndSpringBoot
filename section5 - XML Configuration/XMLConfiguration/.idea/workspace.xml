@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93972e89-6285-4c12-bae9-452a327da334" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../section4 - Java Configuration/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../section4 - Java Configuration/notes.txt" afterDir="false" />
-    </list>
+    <list default="true" id="93972e89-6285-4c12-bae9-452a327da334" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,22 +102,22 @@
       <screen x="52" y="27" width="1314" height="741" />
     </state>
     <state x="175" y="198" width="1058" height="413" key="FileDocumentManager.FileCacheConflict/52.27.1314.741@52.27.1314.741" timestamp="1588667423898" />
-    <state width="1268" height="172" key="GridCell.Tab.0.bottom" timestamp="1588749377863">
+    <state width="1268" height="172" key="GridCell.Tab.0.bottom" timestamp="1588749628656">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1268" height="172" key="GridCell.Tab.0.bottom/52.27.1314.741@52.27.1314.741" timestamp="1588749377863" />
-    <state width="1268" height="172" key="GridCell.Tab.0.center" timestamp="1588749377863">
+    <state width="1268" height="172" key="GridCell.Tab.0.bottom/52.27.1314.741@52.27.1314.741" timestamp="1588749628656" />
+    <state width="1268" height="172" key="GridCell.Tab.0.center" timestamp="1588749628655">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1268" height="172" key="GridCell.Tab.0.center/52.27.1314.741@52.27.1314.741" timestamp="1588749377863" />
-    <state width="1268" height="172" key="GridCell.Tab.0.left" timestamp="1588749377862">
+    <state width="1268" height="172" key="GridCell.Tab.0.center/52.27.1314.741@52.27.1314.741" timestamp="1588749628655" />
+    <state width="1268" height="172" key="GridCell.Tab.0.left" timestamp="1588749628654">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1268" height="172" key="GridCell.Tab.0.left/52.27.1314.741@52.27.1314.741" timestamp="1588749377862" />
-    <state width="1268" height="172" key="GridCell.Tab.0.right" timestamp="1588749377863">
+    <state width="1268" height="172" key="GridCell.Tab.0.left/52.27.1314.741@52.27.1314.741" timestamp="1588749628654" />
+    <state width="1268" height="172" key="GridCell.Tab.0.right" timestamp="1588749628655">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1268" height="172" key="GridCell.Tab.0.right/52.27.1314.741@52.27.1314.741" timestamp="1588749377863" />
+    <state width="1268" height="172" key="GridCell.Tab.0.right/52.27.1314.741@52.27.1314.741" timestamp="1588749628655" />
     <state x="198" y="31" width="1022" height="737" key="SettingsEditor" timestamp="1588577507718">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
