@@ -11,36 +11,12 @@
     <context:component-scan base-package="com.rmmcosta.XMLConfiguration"/>
 
     <bean id="databaseController" class="com.rmmcosta.XMLConfiguration.controllers.DatabaseController"/>
-    <bean id="animalFactory" class="com.rmmcosta.XMLConfiguration.services.DogFactory">
-        <constructor-arg value="The Dog"/>
-    </bean>
-
-    <bean id="helloWorld" class="com.rmmcosta.XMLConfiguration.services.HelloWorld"/>
-
-    <bean id="helloController" class="com.rmmcosta.XMLConfiguration.controllers.HelloController">
-        <property name="helloServicePt" ref="pt"/>
-        <property name="helloServiceEn" ref="en"/>
-        <property name="helloServiceFr" ref="fr"/>
-    </bean>
-
-    <bean id="helloFactory" class="com.rmmcosta.XMLConfiguration.services.HelloFactory"/>
-
-    <bean id="en" factory-bean="helloFactory" factory-method="createHelloService">
-        <constructor-arg value="en"/>
-    </bean>
-
-    <bean id="pt" factory-bean="helloFactory" factory-method="createHelloService">
-        <constructor-arg value="pt"/>
-    </bean>
-
-    <bean id="fr" factory-bean="helloFactory" factory-method="createHelloService">
-        <constructor-arg value="fr"/>
-    </bean>
-
+    <import resource="classpath:spring/animal-config.xml"/>
+    <import resource="classpath:spring/hello-config.xml"/>
     <beans profile="oracle">
-        <bean id="database" class="com.rmmcosta.XMLConfiguration.services.Oracle"/>
+        <import resource="classpath:spring/oracle-config.xml"/>
     </beans>
     <beans profile="mysql">
-        <bean id="database" class="com.rmmcosta.XMLConfiguration.services.MySql"/>
+        <import resource="classpath:spring/mysql-config.xml"/>
     </beans>
 </beans>

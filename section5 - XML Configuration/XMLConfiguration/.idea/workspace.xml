@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93972e89-6285-4c12-bae9-452a327da334" name="Default Changelist" comment="" />
+    <list default="true" id="93972e89-6285-4c12-bae9-452a327da334" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/rmmcosta/XMLConfiguration/controllers/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/rmmcosta/XMLConfiguration/controllers/HelloController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring/spring-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring/spring-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../notes.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +20,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -29,6 +38,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -36,15 +47,21 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.rmmcosta.XMLConfiguration.services" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.rmmcosta.XMLConfiguration.services" />
       <recent name="springboot" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.rmmcosta.XMLConfiguration.services" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.DatabaseTest">
     <configuration name="XmlConfigurationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="springboot.XmlConfigurationApplication" />
       <module name="XMLConfiguration" />
@@ -58,8 +75,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="XMLConfiguration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rmmcosta.XMLConfiguration.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.rmmcosta.XMLConfiguration.services" />
+      <option name="MAIN_CLASS_NAME" value="com.rmmcosta.XMLConfiguration.services.DatabaseTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HelloServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="XMLConfiguration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rmmcosta.XMLConfiguration.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.rmmcosta.XMLConfiguration.services" />
+      <option name="MAIN_CLASS_NAME" value="com.rmmcosta.XMLConfiguration.services.HelloServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DatabaseTest" />
+        <item itemvalue="JUnit.HelloServiceTest" />
         <item itemvalue="Application.XmlConfigurationApplication" />
       </list>
     </recent_temporary>
@@ -102,25 +151,29 @@
       <screen x="52" y="27" width="1314" height="741" />
     </state>
     <state x="175" y="198" width="1058" height="413" key="FileDocumentManager.FileCacheConflict/52.27.1314.741@52.27.1314.741" timestamp="1588667423898" />
-    <state width="1268" height="172" key="GridCell.Tab.0.bottom" timestamp="1588749628656">
+    <state width="1268" height="182" key="GridCell.Tab.0.bottom" timestamp="1588832634200">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1268" height="172" key="GridCell.Tab.0.bottom/52.27.1314.741@52.27.1314.741" timestamp="1588749628656" />
-    <state width="1268" height="172" key="GridCell.Tab.0.center" timestamp="1588749628655">
+    <state width="1268" height="182" key="GridCell.Tab.0.bottom/52.27.1314.741@52.27.1314.741" timestamp="1588832634200" />
+    <state width="1268" height="182" key="GridCell.Tab.0.center" timestamp="1588832634200">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1268" height="172" key="GridCell.Tab.0.center/52.27.1314.741@52.27.1314.741" timestamp="1588749628655" />
-    <state width="1268" height="172" key="GridCell.Tab.0.left" timestamp="1588749628654">
+    <state width="1268" height="182" key="GridCell.Tab.0.center/52.27.1314.741@52.27.1314.741" timestamp="1588832634200" />
+    <state width="1268" height="182" key="GridCell.Tab.0.left" timestamp="1588832634199">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1268" height="172" key="GridCell.Tab.0.left/52.27.1314.741@52.27.1314.741" timestamp="1588749628654" />
-    <state width="1268" height="172" key="GridCell.Tab.0.right" timestamp="1588749628655">
+    <state width="1268" height="182" key="GridCell.Tab.0.left/52.27.1314.741@52.27.1314.741" timestamp="1588832634199" />
+    <state width="1268" height="182" key="GridCell.Tab.0.right" timestamp="1588832634200">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1268" height="172" key="GridCell.Tab.0.right/52.27.1314.741@52.27.1314.741" timestamp="1588749628655" />
+    <state width="1268" height="182" key="GridCell.Tab.0.right/52.27.1314.741@52.27.1314.741" timestamp="1588832634200" />
     <state x="198" y="31" width="1022" height="737" key="SettingsEditor" timestamp="1588577507718">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
     <state x="198" y="31" width="1022" height="737" key="SettingsEditor/52.27.1314.741@52.27.1314.741" timestamp="1588577507718" />
+    <state x="398" y="217" width="612" height="367" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1588832446811">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="398" y="217" width="612" height="367" key="com.intellij.testIntegration.createTest.CreateTestDialog/52.27.1314.741@52.27.1314.741" timestamp="1588832446811" />
   </component>
 </project>

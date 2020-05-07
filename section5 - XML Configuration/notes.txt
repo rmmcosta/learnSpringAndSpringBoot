@@ -35,4 +35,11 @@ the xml configuration
 
 - in a controller we can set the properties to tell which bean should be considered
 for each property
-    - and the properties are the attributes of the class controller
+    - and the properties are the attributes of the class controller 
+
+- unit tests with spring:
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { SpringTestConfiguration.class })
+public class GreetingsSpringTest {
+    // ...
+}
