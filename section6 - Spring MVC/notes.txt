@@ -1,0 +1,48 @@
+- spring mvc
+    - thymeleaf templates
+        - for generating pages (html, css, js)
+    - bootstrap
+        - css
+- spring mvc controller
+- use dynamic binding
+- project to handle web requests
+    - web pages
+    - rest and soap services
+
+- mvc model:
+    - the client deals with the controller
+    - the controller deals with the model and the view
+        - the model for obtaining the data
+        - the view to present that data
+- spring mvc model:
+    - the client deals with the dispatcher servlet (front controller)
+    - the dispatcher deals with the handler mapping
+        - this is to decide which controller and controller method should be invoked 
+        for that specific request (url)
+        - deals with the controller
+            - the controller must act as a traffic cop
+            - the controller must be fairly generic
+            - the controller deals with the service that deal with data persistance
+        - the controller gives the model (pojo) to the dispatcher
+    - the dispatcher passes the model to the view
+        - the view prepares the data in the required format (html, xml, json, etc.)
+        - the view gives that back to the dispatcher
+    - the dispatcher responds to the client
+
+- careful with the separation of concerns
+    - model should be a simple pojo
+    - the view doesn't talk directly with the database
+    - the controller is only a traffic cop
+    - the service layer is responsible for talking with the data layer
+
+- controller
+    - use the @Controller for the class
+    - the @RequestMapping("/") for the method
+    and return the string for the name of the template
+
+- web jars are a real handy way to bring css and javascript libraries to your project
+    - for example for bootstrap and jquery
+    - https://www.webjars.com/  
+    - add them as maven dependencies
+    - 
+    
