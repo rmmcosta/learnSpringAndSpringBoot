@@ -7,7 +7,7 @@ public class Product {
     private int id;
     private String name, description, imageUrl;
     private BigDecimal price;
-    private Date createdOn;
+    private Date createdOn, UpdatedOn;
 
     public BigDecimal getPrice() {
         return price;
@@ -55,5 +55,13 @@ public class Product {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Date getUpdatedOn() {
+        return UpdatedOn;
+    }
+
+    public void setUpdatedOn(Date updatedOn) {
+        UpdatedOn = updatedOn;
     }
 }

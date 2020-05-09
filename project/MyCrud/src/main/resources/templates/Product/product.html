@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>MyCrud - Product</title>
+    <!--/*/ <th:block th:include="fragments/head.html :: head">
+        </th:block> /*/-->
+</head>
+
+<body>
+<div class="container">
+    <header th:insert="fragments/header.html :: header"> </header>
+    <div class="card text-center">
+        <img th:src="${product.imageUrl}" class="card-img-top" th:alt="${product.name}" width="256" heigh="512">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${product.name}">Card title</h5>
+            <p class="card-text" th:text="${product.description}">Some quick example text to build on the card title
+                and make up the bulk of the card's content.</p>
+            <p class="card-text" th:text="${product.price+'€'}">5.90€</p>
+        </div>
+        <div class="card-body">
+            <a th:href="@{/products}">Products</a>
+            <a th:href="${'/product/edit/'+product.id}">Edit</a>
+            <a th:href="${'/product/delete/'+product.id}">Delete</a>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer">The Footer</div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>MyCrud - Products</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--/*/ <th:block th:include="fragments/head.html :: head">
+        </th:block> /*/-->
+</head>
+
+<body>
+<div class="container">
+    <header th:insert="fragments/header.html :: header"> </header>
+    <div th:if="${not #lists.isEmpty(products)}">
+        <h2>Product list</h2>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image Url</th>
+                <th scope="col">CreatedOn</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <th scope="row" th:text="${product.id}"></th>
+                <td th:text="${product.name}">Onions</td>
+                <td th:text="${product.description}">This onions are really good.</td>
+                <td th:text="${product.price}">2.41</td>
+                <td th:text="${product.imageUrl}">http://image</td>
+                <td th:text="${product.createdOn}">01-02-2020 14:50:23</td>
+                <td><a th:href="${'/product/'+product.id}">View</a> | <a th:href="${'/product/edit/'+product.id}">Edit</a> | <a th:href="${'/product/delete/'+product.id}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer">The Footer</div>
+</div>
+</body>
+
+</html>

@@ -46,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
         products.put(3, product);
 
         product = new Product();
-        product.setId(2);
+        product.setId(4);
         product.setName("iPhone 11");
         product.setDescription("Smartphone running iOS 13.");
         product.setPrice(new BigDecimal("829.99"));
@@ -63,5 +63,60 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProduct(int id) {
         return products.get(id);
+    }
+
+    @Override
+    public Product createOrUpdateProduct(Product product) {
+        if (product.getId() == 0) {
+            return createProduct(product.getName(), product.getDescription(), product.getImageUrl(), product.getPrice());
+        } else {
+            return updateProduct(product.getId(), product.getName(), product.getDescription(), product.getImageUrl(), product.getPrice());
+        }
+    }
+
+    @Override
+    public int getNextId() {
+        return products.size() + 1;
+    }
+
+    @Override
+    public void deleteProduct(int id) {
+        if (products.containsKey(id)) {
+            products.remove(id);
+        } else {
+            throw new RuntimeException("Product not found!");
+        }
+    }
+
+    @Override
+    public int getNumProducts() {
+        return products.size();
+    }
+
+    private Product createProduct(String name, String description, String imageUrl, BigDecimal price) {
+        Product product = new Product();
+        int newId = getNextId();
+        product.setId(newId);
+        product.setImageUrl(imageUrl);
+        product.setCreatedOn(new Date());
+        product.setPrice(price);
+        product.setName(name);
+        product.setDescription(description);
+        products.put(newId, product);
+        return product;
+    }
+
+    private Product updateProduct(int id, String name, String description, String imageUrl, BigDecimal price) {
+        if (products.containsKey(id)) {
+            Product product = products.get(id);
+            product.setImageUrl(imageUrl);
+            product.setUpdatedOn(new Date());
+            product.setPrice(price);
+            product.setName(name);
+            product.setDescription(description);
+            return product;
+        } else {
+            throw new RuntimeException("Product not found!");
+        }
     }
 }

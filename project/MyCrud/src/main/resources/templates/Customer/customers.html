@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>MyCrud - Customers</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--/*/ <th:block th:include="fragments/head.html :: head">
+        </th:block> /*/-->
+</head>
+
+<body>
+<div class="container">
+    <header th:insert="fragments/header.html :: header"> </header>
+    <div th:if="${not #lists.isEmpty(customers)}">
+        <h2>Product list</h2>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Zip-Code</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Country</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${customers}">
+                <td scope="row" th:text="${customer.id}"></td>
+                <td th:text="${customer.firstName}">First Name</td>
+                <td th:text="${customer.lastName}">Last Name</td>
+                <td th:text="${customer.email}">Email</td>
+                <td th:text="${customer.phoneNumber}">Phone Number</td>
+                <td th:text="${customer.address}">Address</td>
+                <td th:text="${customer.zipCode}">Zip-Code</td>
+                <td th:text="${customer.city}">City</td>
+                <td th:text="${customer.state}">State</td>
+                <td th:text="${customer.country}">Country</td>
+                <td><a th:href="${'/customer/'+customer.id}">View</a> | <a th:href="${'/customer/edit/'+customer.id}">Edit</a> | <a th:href="${'/customer/delete/'+customer.id}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer">The Footer</div>
+</div>
+</body>
+
+</html>
