@@ -46,3 +46,15 @@
     - add them as maven dependencies
     - 
     
+- create a domain object interface
+    - the product and the customer must implement this interface
+    - the domain object must have the id as private and getters and setters for the id
+
+- create an abstract class for the service (AbstractMapService)
+    - inside this abstract class implement all the common methods
+    - and leave the bootstrap to be implemented by specific services
+
+- create a CRUDService interface
+    - this interface must be inherited by the other services interfaces
+
+- if we want we can use @RequestMapping at the class level (controller class for instance)

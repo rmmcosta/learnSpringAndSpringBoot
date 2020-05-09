@@ -1,5 +1,6 @@
 package com.rmmcosta.MyCrud.controllers;
 
+import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Product;
 import com.rmmcosta.MyCrud.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class ProductController {
 
     @RequestMapping("/products")
     public String listProducts(Model model) {
-        model.addAttribute("products", productService.listAllProducts());
+        model.addAttribute("products", productService.listAllObjects());
         return "/Product/products";
     }
 
     @RequestMapping("/product/{id}")
-    public String getProduct(Model model, @PathVariable int id) {
-        model.addAttribute("product", productService.getProduct(id));
+    public String getProduct(Model model, @PathVariable int id) throws DomainObjectNotFound {
+        model.addAttribute("product", productService.getObjectById(id));
         return "/Product/product";
     }
 
@@ -37,20 +38,20 @@ public class ProductController {
     }
 
     @RequestMapping("/product/edit/{id}")
-    public String editProduct(Model model, @PathVariable int id) {
-        model.addAttribute("product", productService.getProduct(id));
+    public String editProduct(Model model, @PathVariable int id) throws DomainObjectNotFound {
+        model.addAttribute("product", productService.getObjectById(id));
         return "/Product/newProduct";
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.POST)
-    public String createOrUpdateProduct(Product product) {
-        int id = productService.createOrUpdateProduct(product).getId();
+    public String createOrUpdateProduct(Product product) throws DomainObjectNotFound {
+        int id = productService.createOrUpdateObject(product).getId();
         return "redirect:/product/" + id;
     }
 
     @RequestMapping("/product/delete/{id}")
-    public String deleteProduct(@PathVariable int id) {
-        productService.deleteProduct(id);
+    public String deleteProduct(@PathVariable int id) throws DomainObjectNotFound {
+        productService.deleteObject(id);
         return "redirect:/products";
     }
 }

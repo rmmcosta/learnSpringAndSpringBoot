@@ -3,7 +3,7 @@ package com.rmmcosta.MyCrud.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Product {
+public class Product implements DomainObject {
     private int id;
     private String name, description, imageUrl;
     private BigDecimal price;

@@ -1,6 +1,6 @@
 package com.rmmcosta.MyCrud.domain;
 
-public class Customer {
+public class Customer implements DomainObject {
     private String firstName, lastName, phoneNumber, email, address, city, state, zipCode, country;
     private int id;
 

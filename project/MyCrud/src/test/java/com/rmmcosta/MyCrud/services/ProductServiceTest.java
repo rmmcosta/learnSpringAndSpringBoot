@@ -1,5 +1,6 @@
 package com.rmmcosta.MyCrud.services;
 
+import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,34 +9,34 @@ class ProductServiceTest {
     @Test
     void listAllProducts() {
         ProductServiceImpl productService = new ProductServiceImpl();
-        assertEquals(4, productService.listAllProducts().size());
+        assertEquals(4, productService.listAllObjects().size());
     }
 
     @Test
-    void deleteProduct() {
+    void deleteProduct() throws DomainObjectNotFound {
         ProductServiceImpl productService = new ProductServiceImpl();
-        assertEquals(4, productService.listAllProducts().size());
-        productService.deleteProduct(1);
-        assertEquals(3, productService.listAllProducts().size());
+        assertEquals(4, productService.listAllObjects().size());
+        productService.deleteObject(1);
+        assertEquals(3, productService.listAllObjects().size());
     }
 
     @Test
-    void deleteAllProduct() {
-        ProductService productService = new ProductServiceImpl();
-        int size = productService.getNumProducts();
+    void deleteAllProduct() throws DomainObjectNotFound {
+        AbstractService productService = new ProductServiceImpl();
+        int size = productService.getNumObjects();
         assertEquals(4, size);
         for (int i = 1; i <= size; i++) {
-            productService.deleteProduct(i);
-            assertEquals(size-i, productService.getNumProducts());
+            productService.deleteObject(i);
+            assertEquals(size-i, productService.getNumObjects());
         }
     }
 
     @Test
-    void getId() {
-        ProductService productService = new ProductServiceImpl();
-        int size = productService.getNumProducts();
+    void getId() throws DomainObjectNotFound {
+        AbstractService productService = new ProductServiceImpl();
+        int size = productService.getNumObjects();
         for (int i = 1; i <= size; i++) {
-            int currId = productService.getProduct(i).getId();
+            int currId = productService.getObjectById(i).getId();
             assertEquals(i,currId);
         }
     }

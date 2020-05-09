@@ -1,6 +1,6 @@
 package com.rmmcosta.MyCrud.controllers;
 
-import com.rmmcosta.MyCrud.customExceptions.CustomerNotFound;
+import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Customer;
 import com.rmmcosta.MyCrud.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,28 +22,28 @@ public class CustomerController {
     //route to list
     @RequestMapping("/customers")
     public String listAllCustomers(Model model) {
-        model.addAttribute("customers", customerService.listAllCustomers());
+        model.addAttribute("customers", customerService.listAllObjects());
         return "/Customer/customers";
     }
 
     //route to detail
     @RequestMapping("/customer/{id}")
-    public String getCustomerById(Model model, @PathVariable int id) throws CustomerNotFound {
-        model.addAttribute("customer", customerService.getCustomerById(id));
+    public String getCustomerById(Model model, @PathVariable int id) throws DomainObjectNotFound {
+        model.addAttribute("customer", customerService.getObjectById(id));
         return "/Customer/customer";
     }
 
     //route to delete
     @RequestMapping("/customer/delete/{id}")
-    public String deleteCustomer(@PathVariable int id) throws CustomerNotFound {
-        customerService.deleteCustomer(id);
+    public String deleteCustomer(@PathVariable int id) throws DomainObjectNotFound {
+        customerService.deleteObject(id);
         return "redirect:/customers";
     }
 
     //route to edit
     @RequestMapping("/customer/edit/{id}")
-    public String editCustomer(Model model, @PathVariable int id) throws CustomerNotFound {
-        model.addAttribute("customer", customerService.getCustomerById(id));
+    public String editCustomer(Model model, @PathVariable int id) throws DomainObjectNotFound {
+        model.addAttribute("customer", customerService.getObjectById(id));
         return "/Customer/newCustomer";
     }
 
@@ -56,8 +56,8 @@ public class CustomerController {
 
     //route to create or update (post)
     @RequestMapping(value = "/customer", method = RequestMethod.POST)
-    public String createOrUpdateCustomer(Customer customer) throws CustomerNotFound {
-        int id = customerService.createOrUpdateCustomer(customer).getId();
+    public String createOrUpdateCustomer(Customer customer) throws DomainObjectNotFound {
+        int id = customerService.createOrUpdateObject(customer).getId();
         return "redirect:/customer/" + id;
     }
 }
