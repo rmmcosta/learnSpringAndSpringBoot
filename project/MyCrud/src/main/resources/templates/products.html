@@ -20,7 +20,7 @@
         <div th:if="${not #lists.isEmpty(products)}">
             <h2>Product list</h2>
             <table class="table">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
@@ -28,6 +28,7 @@
                     <th scope="col">Price</th>
                     <th scope="col">Image Url</th>
                     <th scope="col">CreatedOn</th>
+                    <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,7 @@
                     <td th:text="${product.price}">2.41</td>
                     <td th:text="${product.imageUrl}">http://image</td>
                     <td th:text="${product.createdOn}">01-02-2020 14:50:23</td>
+                    <td><a th:href="${'/product/'+product.id}">View</a></td>
                 </tr>
                 </tbody>
             </table>
