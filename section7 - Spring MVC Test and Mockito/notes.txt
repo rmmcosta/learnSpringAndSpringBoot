@@ -26,3 +26,14 @@ spring mvc test framework
             view().name('viewname')
 
 - use spring mvc test and mockito for a crud controller
+
+- mockito
+    - declare the service that will be set in the controller to be a mock @Mock
+    - declare the controller with the annotation @InjectMocks
+    - before each test initialize the mocks
+        - MockitoAnnotations.initMocks(this);
+    - after this you can start injecting mocks into the controller
+     - when(some service method).thenReturn(the mock output);
+        - cast to a List if it's a list
+        - inside the when we can even enforce to check some particular object type 
+        that may be passed
