@@ -1,7 +1,6 @@
 package com.rmmcosta.MyCrud.services;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
-import com.rmmcosta.MyCrud.domain.Customer;
 import com.rmmcosta.MyCrud.domain.DomainObject;
 
 import java.util.ArrayList;
