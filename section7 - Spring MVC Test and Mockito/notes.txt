@@ -1,0 +1,28 @@
+- Spring MVC Test
+    - testing framework for the spring mvc controllers
+    - works by mocking a web context (web contexts are highly decoupled in spring)
+        that allows us to test the web requests and the interactions with 
+        the dispatcher servlet
+    - we can test:
+        - handler mappings
+        - url parameters
+        - parameter bindings
+        - request type mappings 
+    - since we don't need to bring the spring context (it will be mocked)
+    the unit test will remain very fast
+
+- Junit (framework to do unit testing) is used in conjunction with the
+spring mvc test framework
+    - junit doesn't have native mocking facilities
+    - use mockito for that instead
+
+- classes:
+    - MockMvc
+        - MockMvcBuilders
+        - standalone setup
+        - perform method to perform the request
+        - andExpect to define what to expect:
+            status().isOk()
+            view().name('viewname')
+
+- use spring mvc test and mockito for a crud controller
