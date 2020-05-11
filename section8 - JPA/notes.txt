@@ -1,0 +1,48 @@
+- there is pure jpa and spring data jpa
+    - we are going to take a look at pure jpa
+- JPA vs Hibernate. Java Persistence API (JPA) defines the management of relational 
+data in the Java applications. Hibernate is an Object-Relational Mapping (ORM) tool
+which is used to save the state of Java object into the database. JPA is the standard, 
+hibernate is the implementation.
+
+- we will use h2 database
+
+- orm is just a bridge between the java objects world and 
+the relational database tables
+
+- a jpa entity is a pojo
+    - can have relationships with other entities
+- entity manager
+    - objet to persist and retrieve data from the database
+- transactions
+- we have the traditional relations:
+    1 to 1
+    1 to many
+    many to many
+- and we also have embedded 
+    - calculated fields (the sum of 2 or more fields for example)
+    - in the database they are two different fields
+    - but we embedded them to be just one
+- data types (java vs sql)
+- we can make queries using the criteria api (java based api)
+- A common design pattern when using JPA is using DAO (data access objects)
+    - this allows us to create an abstraction layer between the java side and the persistence
+    side
+    - jpa is considered to be leaky because some specifics of the implementation are closely related
+    with the data persistance
+    - the goal of the dao pattern is to decouple those two sides
+        - provides a clean abstraction when dealing with the entity manager and 
+        transactions
+- spring data jpa uses the repository pattern
+    - this pattern is very similar to dao but offers a greater abstraction
+
+- we can go to spring initializr and bring the maven dependencies we may need
+that are available there
+
+- defining jpa entities will create automatically the ddl for us
+    - ddl is the dafa definition/description language
+    - is the commands to create, alter and drop tables
+    - this work is done by hibernate
+
+- since the spring boot 1.3 the h2 console is included by default
+    - we can use the console to see how things are in the database

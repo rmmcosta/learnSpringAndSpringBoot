@@ -36,4 +36,8 @@ spring mvc test framework
      - when(some service method).thenReturn(the mock output);
         - cast to a List if it's a list
         - inside the when we can even enforce to check some particular object type 
-        that may be passed
+            that may be passed
+    - with mockito we can mock any object we want by making the following:
+        - MyList listMock = Mockito.mock(MyList.class);
+    - we can also capture the argument being passed
+        - Mockito.any(product.getClass())
