@@ -1,8 +1,16 @@
 package com.rmmcosta.MyCrud.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Customer implements DomainObject {
     private String firstName, lastName, phoneNumber, email, address, city, state, zipCode, country;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Version
+    private Integer version;
 
     public String getFirstName() {
         return firstName;
@@ -119,5 +127,13 @@ public class Customer implements DomainObject {
             equal = false;
         }
         return equal;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

@@ -3,12 +3,14 @@ package com.rmmcosta.MyCrud.services;
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Customer;
 import com.rmmcosta.MyCrud.domain.DomainObject;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 
 @Service
+@Profile("map")
 public class CustomerServiceImpl extends AbstractService implements CustomerService {
     public CustomerServiceImpl() {
         super();

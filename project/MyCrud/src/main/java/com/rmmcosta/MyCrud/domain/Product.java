@@ -1,10 +1,18 @@
 package com.rmmcosta.MyCrud.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Entity
 public class Product implements DomainObject {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Version
+    private Integer version;
+
     private String name, description, imageUrl;
     private BigDecimal price;
     private Date createdOn, UpdatedOn;
@@ -63,5 +71,13 @@ public class Product implements DomainObject {
 
     public void setUpdatedOn(Date updatedOn) {
         UpdatedOn = updatedOn;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

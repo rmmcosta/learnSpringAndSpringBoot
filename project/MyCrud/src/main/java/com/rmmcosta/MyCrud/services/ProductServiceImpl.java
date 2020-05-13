@@ -3,6 +3,7 @@ package com.rmmcosta.MyCrud.services;
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.DomainObject;
 import com.rmmcosta.MyCrud.domain.Product;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
+@Profile("map")
 public class ProductServiceImpl extends AbstractService implements ProductService {
     public ProductServiceImpl() {
         super();
