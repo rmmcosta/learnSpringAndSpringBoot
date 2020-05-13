@@ -88,3 +88,9 @@ that are available there
         - we must use this for inserts, updates and deletes
     - to delete a record:
         - entityManager.remove(entityManager.find(Product.class, id));
+
+- bootstrap data
+    - we need to develop a class that implements the ApplicationListener<ContextRefreshedEvent>
+        - by doing that we will be able to implement logic for the 
+        on application event
+    - this class needs to be annotated as a spring component
