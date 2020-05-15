@@ -1,7 +1,6 @@
 package com.rmmcosta.MyCrud.services;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
-import com.rmmcosta.MyCrud.domain.Customer;
 import com.rmmcosta.MyCrud.domain.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.ActiveProfiles;
@@ -15,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class ProductServiceImplTest {
     @Test
     void listAllProducts() {
-        ProductServiceImpl productService = new ProductServiceImpl();
+        ProductMapServiceImpl productService = new ProductMapServiceImpl();
         assertEquals(4, productService.listAllObjects().size());
     }
 
     @Test
     void deleteProduct() throws DomainObjectNotFound {
-        ProductServiceImpl productService = new ProductServiceImpl();
+        ProductMapServiceImpl productService = new ProductMapServiceImpl();
         assertEquals(4, productService.listAllObjects().size());
         productService.deleteObject(1);
         assertEquals(3, productService.listAllObjects().size());
@@ -29,7 +28,7 @@ class ProductServiceImplTest {
 
     @Test
     void deleteAllProduct() throws DomainObjectNotFound {
-        AbstractService productService = new ProductServiceImpl();
+        AbstractMapService productService = new ProductMapServiceImpl();
         int size = productService.getNumObjects();
         assertEquals(4, size);
         for (int i = 1; i <= size; i++) {
@@ -40,7 +39,7 @@ class ProductServiceImplTest {
 
     @Test
     void getId() throws DomainObjectNotFound {
-        AbstractService productService = new ProductServiceImpl();
+        AbstractMapService productService = new ProductMapServiceImpl();
         int size = productService.getNumObjects();
         for (int i = 1; i <= size; i++) {
             int currId = productService.getObjectById(i).getId();
@@ -50,7 +49,7 @@ class ProductServiceImplTest {
 
     @Test
     void createOrUpdateProduct() {
-        ProductService productService = new ProductServiceImpl();
+        ProductService productService = new ProductMapServiceImpl();
         int size = productService.listAllObjects().size();
         Product product = new Product();
         String name = "Produto 100", description = "the description", imageUrl = "the image";

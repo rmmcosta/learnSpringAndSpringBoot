@@ -12,14 +12,14 @@ class CustomerServiceImplTest {
 
     @Test
     void listAllCustomers() {
-        CustomerService customerService = new CustomerServiceImpl();
+        CustomerService customerService = new CustomerMapServiceImpl();
         int size = customerService.listAllObjects().size();
         assertEquals(2, size);
     }
 
     @Test
     void getCustomerById() {
-        CustomerService customerService = new CustomerServiceImpl();
+        CustomerService customerService = new CustomerMapServiceImpl();
         int size = customerService.listAllObjects().size();
         for (int i = 1; i <= size; i++) {
             try {
@@ -32,7 +32,7 @@ class CustomerServiceImplTest {
 
     @Test
     void createOrUpdateCustomer() {
-        CustomerService customerService = new CustomerServiceImpl();
+        CustomerService customerService = new CustomerMapServiceImpl();
         int size = customerService.listAllObjects().size();
         Customer customer = new Customer();
         customer.setAddress("Paço da Rainha, n.º22, 2º");
@@ -63,7 +63,7 @@ class CustomerServiceImplTest {
 
     @Test
     void deleteCustomer() {
-        CustomerService customerService = new CustomerServiceImpl();
+        CustomerService customerService = new CustomerMapServiceImpl();
         int size = customerService.listAllObjects().size();
         try {
             customerService.deleteObject(1);
@@ -77,14 +77,14 @@ class CustomerServiceImplTest {
 
     @Test
     void getNextKey() {
-        AbstractService customerService = new CustomerServiceImpl();
+        AbstractMapService customerService = new CustomerMapServiceImpl();
         int size = customerService.listAllObjects().size();
         assertEquals(size + 1, customerService.getNextKey());
     }
 
     @Test
     void CustomerNotFound() throws DomainObjectNotFound {
-        CustomerService customerService = new CustomerServiceImpl();
+        CustomerService customerService = new CustomerMapServiceImpl();
         assertThrows(DomainObjectNotFound.class, () -> customerService.getObjectById(100));
         assertThrows(DomainObjectNotFound.class, () -> customerService.getObjectById(500));
     }
