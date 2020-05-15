@@ -2,7 +2,6 @@ package com.rmmcosta.MyCrud.controllers;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Customer;
-import com.rmmcosta.MyCrud.domain.Product;
 import com.rmmcosta.MyCrud.services.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

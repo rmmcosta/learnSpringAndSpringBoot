@@ -4,13 +4,15 @@ import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Customer;
 import com.rmmcosta.MyCrud.domain.Product;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class ProductServiceTest {
+@ActiveProfiles("map")
+class ProductServiceImplTest {
     @Test
     void listAllProducts() {
         ProductServiceImpl productService = new ProductServiceImpl();

@@ -94,3 +94,16 @@ that are available there
         - by doing that we will be able to implement logic for the 
         on application event
     - this class needs to be annotated as a spring component
+
+- integration test:
+    - first create a configuration class in a package inside test
+        @Configuration
+        @EnableAutoConfiguration
+        - we can just use @SpringBootConfiguration
+    @RunWith used in jUnit4 was replaced in jUnit5 by @ExtendWith
+    and in fact we can just use @SpringBootTest
+    - in our classes we must say which active profile we must consider
+        - @ActiveProfiles("something")
+
+- debug spring boot
+    - if we --debug as a parameter to the run we will be able to see the logs

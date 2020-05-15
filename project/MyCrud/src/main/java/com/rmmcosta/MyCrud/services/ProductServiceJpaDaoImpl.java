@@ -15,11 +15,11 @@ import java.util.List;
 @Profile("jpadao")
 public class ProductServiceJpaDaoImpl implements ProductService {
     private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
 
     @Override
     public List<Product> listAllObjects() {
         System.out.println("my print: list all objects");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<Product> products = entityManager.createQuery("from Product", Product.class).getResultList();
         return products;
     }
@@ -28,14 +28,12 @@ public class ProductServiceJpaDaoImpl implements ProductService {
     public Product getObjectById(int id) throws DomainObjectNotFound {
         System.out.println("my print: get object with id = " + id);
         //because we want this to be thread safe we must create an entity manager everytime
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         return entityManager.find(Product.class, id);
     }
 
     @Override
     public Product createOrUpdateObject(Product object) throws DomainObjectNotFound {
         System.out.println("my print: create or update object");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         Product newProduct = entityManager.merge(object);
         entityManager.getTransaction().commit();
@@ -45,7 +43,6 @@ public class ProductServiceJpaDaoImpl implements ProductService {
     @Override
     public void deleteObject(int id) throws DomainObjectNotFound {
         System.out.println("my print: delete object");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         Product product = entityManager.find(Product.class, id);
         System.out.println("my print: got product " + product.getName());
         entityManager.getTransaction().begin();
@@ -56,6 +53,7 @@ public class ProductServiceJpaDaoImpl implements ProductService {
     @PersistenceUnit
     public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
+        entityManager = entityManagerFactory.createEntityManager();
         System.out.println("my print: factory created");
     }
 }

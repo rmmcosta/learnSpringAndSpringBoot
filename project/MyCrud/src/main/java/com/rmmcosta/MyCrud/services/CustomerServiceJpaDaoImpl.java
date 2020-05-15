@@ -14,22 +14,20 @@ import java.util.List;
 @Profile("jpadao")
 public class CustomerServiceJpaDaoImpl implements CustomerService {
     private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
 
     @Override
     public List<Customer> listAllObjects() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         return entityManager.createQuery("from Customer", Customer.class).getResultList();
     }
 
     @Override
     public Customer getObjectById(int id) throws DomainObjectNotFound {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         return entityManager.find(Customer.class, id);
     }
 
     @Override
     public Customer createOrUpdateObject(Customer object) throws DomainObjectNotFound {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         Customer newCustomer = entityManager.merge(object);
         entityManager.getTransaction().commit();
@@ -38,14 +36,15 @@ public class CustomerServiceJpaDaoImpl implements CustomerService {
 
     @Override
     public void deleteObject(int id) throws DomainObjectNotFound {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Customer customer = entityManager.find(Customer.class, id);
         entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.find(Customer.class, id));
+        entityManager.remove(customer);
         entityManager.getTransaction().commit();
     }
 
     @PersistenceUnit
     public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
+        entityManager = entityManagerFactory.createEntityManager();
     }
 }

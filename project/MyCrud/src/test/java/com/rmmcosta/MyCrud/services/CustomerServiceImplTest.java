@@ -3,9 +3,11 @@ package com.rmmcosta.MyCrud.services;
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Customer;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ActiveProfiles("map")
 class CustomerServiceImplTest {
 
     @Test

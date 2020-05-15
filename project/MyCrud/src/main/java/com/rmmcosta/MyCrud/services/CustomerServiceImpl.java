@@ -1,5 +1,6 @@
 package com.rmmcosta.MyCrud.services;
 
+import com.rmmcosta.MyCrud.bootstrap.BootstrapCustomers;
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Customer;
 import com.rmmcosta.MyCrud.domain.DomainObject;
@@ -19,31 +20,9 @@ public class CustomerServiceImpl extends AbstractService implements CustomerServ
     @Override
     protected void bootstrapObjects() {
         domainObjectMap = new HashMap<>();
-        Customer customer = new Customer();
-        customer.setAddress("Paço da Rainha, n.º22, 2º");
-        customer.setCity("Lisbon");
-        customer.setCountry("Portugal");
-        customer.setEmail("rmmcosta@mail.com");
-        customer.setFirstName("Ricardo");
-        customer.setLastName("Costa");
-        customer.setPhoneNumber("938012420");
-        customer.setId(1);
-        customer.setState("Lisbon");
-        customer.setZipCode("1150-246");
-        domainObjectMap.put(1, customer);
-
-        customer = new Customer();
-        customer.setAddress("Travessa de Matos, n.º115");
-        customer.setCity("Guimarães");
-        customer.setCountry("Portugal");
-        customer.setEmail("costa@mail.com");
-        customer.setFirstName("Rui");
-        customer.setLastName("Costa");
-        customer.setPhoneNumber("910274474");
-        customer.setId(2);
-        customer.setState("Braga");
-        customer.setZipCode("4765-571");
-        domainObjectMap.put(2, customer);
+        for (Customer customer : BootstrapCustomers.getBootstrapCustomers()) {
+            domainObjectMap.put(customer.getId(), customer);
+        }
     }
 
     @Override
