@@ -2,11 +2,17 @@ package com.rmmcosta.MyCrud.services.mapServices;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Customer;
+import com.rmmcosta.MyCrud.domain.User;
 import com.rmmcosta.MyCrud.services.CustomerService;
+import com.rmmcosta.MyCrud.services.UserService;
 import com.rmmcosta.MyCrud.services.mapServices.AbstractMapService;
 import com.rmmcosta.MyCrud.services.mapServices.CustomerMapServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

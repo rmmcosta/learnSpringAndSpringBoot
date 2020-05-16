@@ -12,8 +12,11 @@ public class Customer implements DomainObject {
     @Version
     private Integer version;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     private User user;
+
+    @Transient
+    private int userId;
 
     public String getFirstName() {
         return firstName;
@@ -146,5 +149,13 @@ public class Customer implements DomainObject {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

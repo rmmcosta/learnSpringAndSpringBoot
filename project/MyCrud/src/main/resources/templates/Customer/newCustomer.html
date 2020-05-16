@@ -13,6 +13,14 @@
     <header th:insert="fragments/header.html :: header"> </header>
     <form method="post" th:object="${customer}" th:action="@{/customer}">
         <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{version}">
+        <div class="form-group">
+            <label for="user">User</label>
+            <select id="user" th:field="*{userId}">
+                <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"
+                        th:selected="${user.id == selectedUserId}"></option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="firstName">First name</label>
             <input type="text" class="form-control" id="firstName" th:field="*{firstName}" 
