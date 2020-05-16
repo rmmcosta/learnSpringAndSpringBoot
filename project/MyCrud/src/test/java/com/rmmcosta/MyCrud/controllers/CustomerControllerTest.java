@@ -1,11 +1,16 @@
 package com.rmmcosta.MyCrud.controllers;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
+import com.rmmcosta.MyCrud.domain.Cart;
 import com.rmmcosta.MyCrud.domain.Customer;
+import com.rmmcosta.MyCrud.domain.Product;
 import com.rmmcosta.MyCrud.services.CustomerService;
+import com.rmmcosta.MyCrud.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -23,6 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class CustomerControllerTest {
     @Mock
     private CustomerService customerService;
+    @Mock
+    private UserService userService;
     @InjectMocks
     private CustomerController customerController;
     private MockMvc mockMvc;
@@ -51,10 +58,23 @@ class CustomerControllerTest {
 
     @Test
     void getCustomerById() {
+        int id = 10;
+        String name = "Customer 10";
+        Customer customer = new Customer();
+        customer.setId(id);
+        customer.setFirstName(name);
         try {
-            mockMvc.perform(get("/customer/1")).
+            when(customerService.getObjectById(id)).thenReturn(customer);
+        } catch (DomainObjectNotFound domainObjectNotFound) {
+            assertFalse(true);
+        }
+        try {
+            mockMvc.perform(get("/customer/"+id)).
                     andExpect(status().isOk()).
-                    andExpect(view().name("/Customer/customer"));
+                    andExpect(view().name("/Customer/customer")).
+                    andExpect(model().attribute("customer", instanceOf(Customer.class))).
+                    andExpect(model().attribute("customer", hasProperty("id", is(id)))).
+                    andExpect(model().attribute("customer", hasProperty("firstName", is(name))));
         } catch (Exception e) {
             assertFalse(true);
         }
@@ -80,8 +100,18 @@ class CustomerControllerTest {
 
     @Test
     void editCustomer() {
+        int id = 10;
+        String name = "Customer 10";
+        Customer customer = new Customer();
+        customer.setId(id);
+        customer.setFirstName(name);
         try {
-            mockMvc.perform(get("/customer/edit/1")).
+            when(customerService.getObjectById(id)).thenReturn(customer);
+        } catch (DomainObjectNotFound domainObjectNotFound) {
+            assertFalse(true);
+        }
+        try {
+            mockMvc.perform(get("/customer/edit/"+id)).
                     andExpect(status().isOk()).
                     andExpect(view().name("/Customer/newCustomer"));
         } catch (Exception e) {

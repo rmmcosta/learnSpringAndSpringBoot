@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 @Profile("jpadao")
-public class CustomerServiceJpaDaoImpl implements CustomerService {
+public class CustomerServiceJpaDaoImpl extends AbstractJpaService implements CustomerService {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
     private EncryptionService encryptionService;
@@ -73,5 +73,10 @@ public class CustomerServiceJpaDaoImpl implements CustomerService {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Override
+    int getCount() {
+        return entityManager.createNativeQuery("Select count(1) from Customer").getFirstResult();
     }
 }

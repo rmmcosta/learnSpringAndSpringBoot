@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>MyCrud - Cart</title>
+    <!--/*/ <th:block th:include="fragments/head.html :: head">
+        </th:block> /*/-->
+</head>
+
+<body>
+<div class="container">
+    <header th:insert="fragments/header.html :: header"></header>
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${cart.createdOn}">cart1</h5>
+            <p class="card-text" th:text="${customer.email}">rmmcosta@mail.com</p>
+        </div>
+        <div class="card-body">
+            <a th:href="@{/carts}">Carts</a>
+            <a th:href="${'/cart/edit/'+cart.id}">Edit</a>
+            <a th:href="${'/cart/delete/'+cart.id}">Delete</a>
+        </div>
+        <div class="card-footer">
+            <form method="post" th:object="${cart}" th:action="@{/cartProduct}">
+                <input type="hidden" th:field="*{id}" th:value="${cart.id}"/>
+                <div class="form-group">
+                    <label for="product">Product</label>
+                    <select id="product" th:field="*{productId}">
+                        <option th:each="product : ${products}"
+                                th:value="${product.id}"
+                                th:text="${product.name + ' ' + product.price+'€'}">
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+    <div th:if="${not #lists.isEmpty(cartProducts)}">
+        <h2>Product list</h2>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cartProduct : ${cartProducts}">
+                <th scope="row" th:text="${cartProduct.id}"></th>
+                <td th:text="${cartProduct.name}">Onions</td>
+                <td th:text="${cartProduct.description}">This onions are really good.</td>
+                <td th:text="${cartProduct.price}">2.41</td>
+                <td><a
+                        th:href="${'/cartProduct/delete/'+cartProduct.id}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer">The Footer</div>
+</div>
+</body>
+
+</html>

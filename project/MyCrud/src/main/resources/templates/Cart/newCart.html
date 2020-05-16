@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>MyCrud - Product</title>
+    <!--/*/ <th:block th:include="fragments/head.html :: head">
+        </th:block> /*/-->
+</head>
+
+<body>
+<div class="container">
+    <header th:insert="fragments/header.html :: header"> </header>
+    <form method="post" th:object="${cart}" th:action="@{/cart}">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{version}">
+        <div class="form-group">
+            <label for="customer">Customer</label>
+            <select id="customer" th:field="*{customerId}">
+                <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.email}"
+                        th:selected="${customer.id == selectedCustomerId}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div th:replace="fragments/footer :: footer">The Footer</div>
+</div>
+</body>
+
+</html>

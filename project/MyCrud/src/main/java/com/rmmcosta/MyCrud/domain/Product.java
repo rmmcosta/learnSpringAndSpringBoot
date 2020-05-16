@@ -5,10 +5,29 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@SqlResultSetMapping(name="CartProducts",
+        entities={
+                @EntityResult(entityClass=Product.class, fields={
+                        @FieldResult(name="id", column="id"),
+                        @FieldResult(name="description", column="description"),
+                        @FieldResult(name="name", column="name"),
+                        @FieldResult(name="price", column="price")
+                })}
+)
 public class Product implements DomainObject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    public Product() {
+    }
+
+    public Product(int id, String name, String description, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 
     @Version
     private Integer version;

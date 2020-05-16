@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>MyCrud - Carts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--/*/ <th:block th:include="fragments/head.html :: head">
+        </th:block> /*/-->
+</head>
+
+<body>
+<div class="container">
+    <header th:insert="fragments/header.html :: header"> </header>
+    <div th:if="${not #lists.isEmpty(carts)}">
+        <h2>Customer list</h2>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer</th>
+                <th scope="col">CreatedOn</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cart : ${carts}">
+                <th scope="row" th:text="${cart.id}"></th>
+                <td th:text="${customer.email}">rmmcosta@mail.com</td>
+                <td th:text="${cart.createOn}">2020-01-01 10:00:00</td>
+                <td><a th:href="${'/cart/'+cart.id}">View</a> | <a th:href="${'/cart/edit/'+cart.id}">Edit</a> | <a th:href="${'/cart/delete/'+cart.id}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer">The Footer</div>
+</div>
+</body>
+
+</html>

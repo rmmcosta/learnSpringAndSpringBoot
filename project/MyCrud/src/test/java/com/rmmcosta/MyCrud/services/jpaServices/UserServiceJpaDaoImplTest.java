@@ -6,6 +6,7 @@ import com.rmmcosta.MyCrud.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("jpadao")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 class UserServiceJpaDaoImplTest {
 
     private UserService userService;
@@ -25,13 +27,19 @@ class UserServiceJpaDaoImplTest {
 
     @Test
     void listAllObjects() {
-        assertEquals(1, userService.listAllObjects().size());
+        AbstractJpaService jpaService = (AbstractJpaService) userService;
+        assertEquals(jpaService.getCount(), userService.listAllObjects().size());
     }
 
     @Test
     void getObjectById() throws DomainObjectNotFound {
-        User user = (User) userService.listAllObjects().get(0);
-        assertEquals(user.getUsername(), userService.getObjectById(user.getId()).getUsername());
+        User user = new User();
+        String username = "aramos";
+        user.setUsername(username);
+        user.setPassword("123456");
+        User newUser = userService.createOrUpdateObject(user);
+        assertEquals(user.getUsername(), userService.getObjectById(newUser.getId()).getUsername());
+        userService.deleteObject(newUser.getId());
     }
 
     @Test
@@ -46,6 +54,7 @@ class UserServiceJpaDaoImplTest {
         assertEquals(initialSize + 1, userService.listAllObjects().size());
         assertEquals(username, userService.getObjectById(newUser.getId()).getUsername());
         assert !newUser.getEncryptedPassword().isEmpty();
+        userService.deleteObject(newUser.getId());
     }
 
     @Test

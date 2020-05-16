@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ActiveProfiles("jpadao")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 class ProductServiceJpaDaoImplTest {
 
     private ProductService productService;
@@ -31,8 +33,7 @@ class ProductServiceJpaDaoImplTest {
 
     @Test
     void listAllObjects() {
-        List<Product> productList = (List<Product>) productService.listAllObjects();
-        assertEquals(4, productList.size());
+        assertEquals(4, productService.listAllObjects().size());
     }
 
     @Test

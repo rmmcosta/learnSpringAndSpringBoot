@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Profile("jpadao")
-public class ProductServiceJpaDaoImpl implements ProductService {
+public class ProductServiceJpaDaoImpl extends AbstractJpaService implements ProductService {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
 
@@ -56,5 +56,10 @@ public class ProductServiceJpaDaoImpl implements ProductService {
         this.entityManagerFactory = entityManagerFactory;
         entityManager = entityManagerFactory.createEntityManager();
         System.out.println("my print: factory created");
+    }
+
+    @Override
+    int getCount() {
+        return entityManager.createNativeQuery("Select count(1) from Product").getFirstResult();
     }
 }

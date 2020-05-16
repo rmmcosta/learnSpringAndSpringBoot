@@ -126,7 +126,6 @@ class UserControllerTest {
                     andExpect(model().attribute("user", hasProperty("username", is(username)))).
                     andExpect(model().attribute("user", hasProperty("password", is(password)))).
                     andExpect(model().attribute("user", hasProperty("isActive", is(isActive))));
-            ;
         } catch (Exception e) {
             System.out.println("perform error:" + e.getMessage());
             assertFalse(true);

@@ -127,7 +127,6 @@ class ProductControllerTest {
                     andExpect(model().attribute("product", instanceOf(Product.class))).
                     andExpect(model().attribute("product", hasProperty("name", is(name)))).
                     andExpect(model().attribute("product", hasProperty("price", is(price))));
-            ;
         } catch (Exception e) {
             System.out.println("perform error:" + e.getMessage());
             assertFalse(true);
