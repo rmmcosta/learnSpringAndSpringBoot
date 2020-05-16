@@ -21,14 +21,14 @@ public class CustomerController {
 
     //route to list
     @RequestMapping("/customers")
-    public String listAllCustomers(Model model) {
+    public String listCustomers(Model model) {
         model.addAttribute("customers", customerService.listAllObjects());
         return "/Customer/customers";
     }
 
     //route to detail
     @RequestMapping("/customer/{id}")
-    public String getCustomerById(Model model, @PathVariable int id) throws DomainObjectNotFound {
+    public String showCustomer(Model model, @PathVariable int id) throws DomainObjectNotFound {
         model.addAttribute("customer", customerService.getObjectById(id));
         return "/Customer/customer";
     }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>MyCrud - Users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--/*/ <th:block th:include="fragments/head.html :: head">
+        </th:block> /*/-->
+</head>
+
+<body>
+<div class="container">
+    <header th:insert="fragments/header.html :: header"> </header>
+    <div th:if="${not #lists.isEmpty(users)}">
+        <h2>Customer list</h2>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+                <th scope="col">EncryptedPassword</th>
+                <th scope="col">Active</th>
+                <th scope="col">Version</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <th scope="row" th:text="${user.id}"></th>
+                <td th:text="${user.username}">rmmcosta</td>
+                <td th:text="${user.password}">123456</td>
+                <td th:text="${user.encryptedPassword}">%dh3$13%#!</td>
+                <td th:text="${user.isActive}">True</td>
+                <td th:text="${user.version}">0</td>
+                <td><a th:href="${'/user/'+user.id}">View</a> | <a th:href="${'/user/edit/'+user.id}">Edit</a> | <a th:href="${'/user/delete/'+user.id}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer">The Footer</div>
+</div>
+</body>
+
+</html>

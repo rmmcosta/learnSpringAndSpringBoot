@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @RequestMapping("/product/{id}")
-    public String getProduct(Model model, @PathVariable int id) throws DomainObjectNotFound {
+    public String showProduct(Model model, @PathVariable int id) throws DomainObjectNotFound {
         model.addAttribute("product", productService.getObjectById(id));
         return "/Product/product";
     }

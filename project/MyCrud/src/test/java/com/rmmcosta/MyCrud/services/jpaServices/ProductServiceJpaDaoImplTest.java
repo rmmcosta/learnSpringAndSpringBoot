@@ -1,8 +1,9 @@
-package com.rmmcosta.MyCrud.services;
+package com.rmmcosta.MyCrud.services.jpaServices;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Customer;
 import com.rmmcosta.MyCrud.domain.Product;
+import com.rmmcosta.MyCrud.services.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,9 +1,10 @@
-package com.rmmcosta.MyCrud.services;
+package com.rmmcosta.MyCrud.services.mapServices;
 
 import com.rmmcosta.MyCrud.bootstrap.BootstrapProducts;
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.DomainObject;
 import com.rmmcosta.MyCrud.domain.Product;
+import com.rmmcosta.MyCrud.services.ProductService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,8 @@ public class ProductMapServiceImpl extends AbstractMapService implements Product
     }
 
     @Override
-    public List<DomainObject> listAllObjects() {
-        return super.listAllObjects();
+    public List<Product> listAllObjects() {
+        return (List<Product>) super.listAllObjects();
     }
 
     @Override

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>MyCrud - User</title>
+    <!--/*/ <th:block th:include="fragments/head.html :: head">
+        </th:block> /*/-->
+</head>
+
+<body>
+<div class="container">
+    <header th:insert="fragments/header.html :: header"> </header>
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${user.username}">user1</h5>
+            <p class="card-text" th:text="${user.isActive}">True</p>
+            <p class="card-text" th:text="${user.password}">123456</p>
+        </div>
+        <div class="card-body">
+            <a th:href="@{/users}">Users</a>
+            <a th:href="${'/user/edit/'+user.id}">Edit</a>
+            <a th:href="${'/user/delete/'+user.id}">Delete</a>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer">The Footer</div>
+</div>
+</body>
+
+</html>

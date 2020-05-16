@@ -12,7 +12,7 @@ public class User implements DomainObject {
     private String username, encryptedPassword;
     @Transient
     private String password;
-    private boolean enabled = true;
+    private boolean isActive = true;
 
     @Override
     public void setId(int id) {
@@ -56,11 +56,11 @@ public class User implements DomainObject {
         this.password = password;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public boolean getIsActive() {
+        return isActive;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setIsActive(boolean active) {
+        this.isActive = active;
     }
 }

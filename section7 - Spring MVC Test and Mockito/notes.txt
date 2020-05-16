@@ -17,7 +17,7 @@ spring mvc test framework
     - use mockito for that instead
 
 - classes:
-    - MockMvc
+    - MockMvc (declared in the test class and initialized on the setup)
         - MockMvcBuilders
         - standalone setup
         - perform method to perform the request
@@ -30,6 +30,7 @@ spring mvc test framework
 - mockito
     - declare the service that will be set in the controller to be a mock @Mock
     - declare the controller with the annotation @InjectMocks
+    - also declare the MockMvc object
     - before each test initialize the mocks
         - MockitoAnnotations.initMocks(this);
     - after this you can start injecting mocks into the controller

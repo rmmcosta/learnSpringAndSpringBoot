@@ -7,3 +7,6 @@
 the annotation @Transient
     - for example for the plain text password
     - then we can go ahead and store the encrypted password
+
+- for one to one relationships with delete cascade
+    @OneToOne(cascade = CascadeType.ALL)

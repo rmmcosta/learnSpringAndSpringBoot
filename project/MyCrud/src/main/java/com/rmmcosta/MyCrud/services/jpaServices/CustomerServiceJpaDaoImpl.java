@@ -1,7 +1,10 @@
-package com.rmmcosta.MyCrud.services;
+package com.rmmcosta.MyCrud.services.jpaServices;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Customer;
+import com.rmmcosta.MyCrud.services.CustomerService;
+import com.rmmcosta.MyCrud.services.security.EncryptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ import java.util.List;
 public class CustomerServiceJpaDaoImpl implements CustomerService {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
+    private EncryptionService encryptionService;
 
     @Override
     public List<Customer> listAllObjects() {
@@ -28,6 +32,11 @@ public class CustomerServiceJpaDaoImpl implements CustomerService {
 
     @Override
     public Customer createOrUpdateObject(Customer object) throws DomainObjectNotFound {
+        if (object.getUser() != null) {
+            if (!object.getUser().getPassword().isEmpty()) {
+                object.getUser().setEncryptedPassword(encryptionService.encryptPassword(object.getUser().getPassword()));
+            }
+        }
         entityManager.getTransaction().begin();
         Customer newCustomer = entityManager.merge(object);
         entityManager.getTransaction().commit();
@@ -46,5 +55,10 @@ public class CustomerServiceJpaDaoImpl implements CustomerService {
     public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
         entityManager = entityManagerFactory.createEntityManager();
+    }
+
+    @Autowired
+    public void setEncryptionService(EncryptionService encryptionService) {
+        this.encryptionService = encryptionService;
     }
 }

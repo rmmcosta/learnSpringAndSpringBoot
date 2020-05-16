@@ -1,7 +1,8 @@
-package com.rmmcosta.MyCrud.services;
+package com.rmmcosta.MyCrud.services.mapServices;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Product;
+import com.rmmcosta.MyCrud.services.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @ActiveProfiles("map")
-class ProductServiceImplTest {
+class ProductMapServiceImplTest {
     @Test
     void listAllProducts() {
         ProductMapServiceImpl productService = new ProductMapServiceImpl();
@@ -29,18 +30,18 @@ class ProductServiceImplTest {
     @Test
     void deleteAllProduct() throws DomainObjectNotFound {
         AbstractMapService productService = new ProductMapServiceImpl();
-        int size = productService.getNumObjects();
+        int size = productService.getCount();
         assertEquals(4, size);
         for (int i = 1; i <= size; i++) {
             productService.deleteObject(i);
-            assertEquals(size-i, productService.getNumObjects());
+            assertEquals(size-i, productService.getCount());
         }
     }
 
     @Test
     void getId() throws DomainObjectNotFound {
         AbstractMapService productService = new ProductMapServiceImpl();
-        int size = productService.getNumObjects();
+        int size = productService.getCount();
         for (int i = 1; i <= size; i++) {
             int currId = productService.getObjectById(i).getId();
             assertEquals(i,currId);

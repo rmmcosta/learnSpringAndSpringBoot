@@ -1,4 +1,4 @@
-package com.rmmcosta.MyCrud.services;
+package com.rmmcosta.MyCrud.services.mapServices;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.DomainObject;
@@ -14,11 +14,11 @@ public abstract class AbstractMapService {
         bootstrapObjects();
     }
 
-    List<DomainObject> listAllObjects() {
+    public List<?> listAllObjects() {
         return new ArrayList<>(domainObjectMap.values());
     }
 
-    DomainObject getObjectById(int id) throws DomainObjectNotFound {
+    public DomainObject getObjectById(int id) throws DomainObjectNotFound {
         if (domainObjectMap.containsKey(id)) {
             return domainObjectMap.get(id);
         } else {
@@ -34,7 +34,7 @@ public abstract class AbstractMapService {
         return object;
     }
 
-    void deleteObject(int id) throws DomainObjectNotFound {
+    public void deleteObject(int id) throws DomainObjectNotFound {
         if (domainObjectMap.containsKey(id)) {
             domainObjectMap.remove(id);
         } else {
@@ -42,11 +42,11 @@ public abstract class AbstractMapService {
         }
     }
 
-    int getNextKey() {
+    public int getNextKey() {
         return domainObjectMap.size()+1;
     }
 
-    int getNumObjects() {
+    public int getCount() {
         return domainObjectMap.size();
     }
 

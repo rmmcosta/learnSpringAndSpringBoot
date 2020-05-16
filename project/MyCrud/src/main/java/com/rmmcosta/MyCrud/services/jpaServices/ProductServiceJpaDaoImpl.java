@@ -1,7 +1,8 @@
-package com.rmmcosta.MyCrud.services;
+package com.rmmcosta.MyCrud.services.jpaServices;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
 import com.rmmcosta.MyCrud.domain.Product;
+import com.rmmcosta.MyCrud.services.ProductService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
