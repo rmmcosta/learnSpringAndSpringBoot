@@ -133,26 +133,16 @@ class CustomerControllerTest {
     @Test
     void createOrUpdateCustomer() {
        int id = 100;
-        String address = "Paço da Rainha, n.º22, 2º";
-        String city = "Lisbon";
-        String country = "Portugal";
         String email = "rmmcosta@mail.com";
         String firstName = "Ricardo";
         String lastName = "Costa";
         String phoneNumber = "938012420";
-        String state = "Lisbon";
-        String zipCode = "1150-246";
         Customer customer = new Customer();
         customer.setId(id);
-        customer.setAddress(address);
-        customer.setCity(city);
-        customer.setCountry(country);
         customer.setEmail(email);
         customer.setFirstName(firstName);
         customer.setLastName(lastName);
         customer.setPhoneNumber(phoneNumber);
-        customer.setState(state);
-        customer.setZipCode(zipCode);
         try {
             when(customerService.createOrUpdateObject(Mockito.any(customer.getClass()))).thenReturn(customer);
         } catch (DomainObjectNotFound domainObjectNotFound) {
@@ -164,13 +154,8 @@ class CustomerControllerTest {
                     .param("id", String.valueOf(id))
                     .param("firstName", firstName)
                     .param("lastName", lastName)
-                    .param("address", address)
                     .param("phoneNumber", phoneNumber)
                     .param("email", email)
-                    .param("state", state)
-                    .param("city", city)
-                    .param("country", country)
-                    .param("zipCode", zipCode)
             )
                     .andExpect(status().is3xxRedirection())
                     .andExpect(view().name("redirect:/customer/" + id))

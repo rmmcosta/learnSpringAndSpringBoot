@@ -44,15 +44,10 @@ class CustomerMapServiceImplTest {
         CustomerService customerService = new CustomerMapServiceImpl();
         int size = customerService.listAllObjects().size();
         Customer customer = new Customer();
-        customer.setAddress("Paço da Rainha, n.º22, 2º");
-        customer.setCity("Lisbon");
-        customer.setCountry("Portugal");
         customer.setEmail("rmmcosta@mail.com");
         customer.setFirstName("Ricardo");
         customer.setLastName("Costa");
         customer.setPhoneNumber("938012420");
-        customer.setState("Lisbon");
-        customer.setZipCode("1150-246");
         try {
             Customer createdCustomer = customerService.createOrUpdateObject(customer);
             customer.setId(createdCustomer.getId());

@@ -4,10 +4,30 @@ import javax.persistence.*;
 
 @Entity
 public class Customer implements DomainObject {
-    private String firstName, lastName, phoneNumber, email, address, city, state, zipCode, country;
+    private String firstName, lastName, phoneNumber, email;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "address", column = @Column(name = "bill_address")),
+            @AttributeOverride(name = "city", column = @Column(name = "bill_city")),
+            @AttributeOverride(name = "state", column = @Column(name = "bill_state")),
+            @AttributeOverride(name = "zipCode", column = @Column(name = "bill_zipCode")),
+            @AttributeOverride(name = "country", column = @Column(name = "bill_country"))
+    })
+    private Address billingAddress;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "address", column = @Column(name = "ship_address")),
+            @AttributeOverride(name = "city", column = @Column(name = "ship_city")),
+            @AttributeOverride(name = "state", column = @Column(name = "ship_state")),
+            @AttributeOverride(name = "zipCode", column = @Column(name = "ship_zipCode")),
+            @AttributeOverride(name = "country", column = @Column(name = "ship_country"))
+    })
+    private Address shippingAddress;
 
     @Version
     private Integer version;
@@ -50,52 +70,28 @@ public class Customer implements DomainObject {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Address getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public Address getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
     @Override
@@ -105,15 +101,6 @@ public class Customer implements DomainObject {
         if (this.getId() != otherCustomer.getId()) {
             equal = false;
         }
-        if (this.getAddress() != otherCustomer.getAddress()) {
-            equal = false;
-        }
-        if (this.getCity() != otherCustomer.getCity()) {
-            equal = false;
-        }
-        if (this.getCountry() != otherCustomer.getCountry()) {
-            equal = false;
-        }
         if (this.getEmail() != otherCustomer.getEmail()) {
             equal = false;
         }
@@ -121,12 +108,6 @@ public class Customer implements DomainObject {
             equal = false;
         }
         if (this.getLastName() != otherCustomer.getLastName()) {
-            equal = false;
-        }
-        if (this.getState() != otherCustomer.getState()) {
-            equal = false;
-        }
-        if (this.getZipCode() != otherCustomer.getZipCode()) {
             equal = false;
         }
         if (this.getPhoneNumber() != otherCustomer.getPhoneNumber()) {

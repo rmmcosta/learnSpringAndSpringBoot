@@ -40,15 +40,10 @@ class CustomerServiceJpaDaoImplTest {
     @Test
     void getObjectById() throws DomainObjectNotFound {
         Customer customer = new Customer();
-        customer.setAddress("Paço da Rainha, n.º22, 2º");
-        customer.setCity("Lisbon");
-        customer.setCountry("Portugal");
         customer.setEmail("aramos@mail.com");
         customer.setFirstName("Ana");
         customer.setLastName("Ramos");
         customer.setPhoneNumber("966945019");
-        customer.setState("Lisbon");
-        customer.setZipCode("1150-246");
         Customer newCustomer = customerService.createOrUpdateObject(customer);
         List<Customer> customerList = (List<Customer>) customerService.listAllObjects();
         customer = customerService.getObjectById(customerList.get(0).getId());
@@ -62,15 +57,10 @@ class CustomerServiceJpaDaoImplTest {
         List<Customer> customerList = (List<Customer>) customerService.listAllObjects();
         int initSize = customerList.size();
         Customer customer = new Customer();
-        customer.setAddress("Paço da Rainha, n.º22, 2º");
-        customer.setCity("Lisbon");
-        customer.setCountry("Portugal");
         customer.setEmail("aramos@mail.com");
         customer.setFirstName("Ana");
         customer.setLastName("Ramos");
         customer.setPhoneNumber("966945019");
-        customer.setState("Lisbon");
-        customer.setZipCode("1150-246");
         Customer newCustomer = customerService.createOrUpdateObject(customer);
         customerList = (List<Customer>) customerService.listAllObjects();
         assertEquals(initSize+1,customerList.size());
@@ -81,15 +71,10 @@ class CustomerServiceJpaDaoImplTest {
     void createOrUpdateObjectWithUser() throws DomainObjectNotFound {
         List<Customer> customerList = (List<Customer>) customerService.listAllObjects();
         Customer customer = new Customer();
-        customer.setAddress("Paço da Rainha, n.º22, 2º");
-        customer.setCity("Lisbon");
-        customer.setCountry("Portugal");
         customer.setEmail("aramos@mail.com");
         customer.setFirstName("Ana");
         customer.setLastName("Ramos");
         customer.setPhoneNumber("966945019");
-        customer.setState("Lisbon");
-        customer.setZipCode("1150-246");
 
         User user = (User) userService.listAllObjects().get(0);
         customer.setUserId(user.getId());
@@ -104,15 +89,10 @@ class CustomerServiceJpaDaoImplTest {
     @Test
     void createOrUpdateObjectWithNewUser() throws DomainObjectNotFound {
         Customer customer = new Customer();
-        customer.setAddress("Paço da Rainha, n.º22, 2º");
-        customer.setCity("Lisbon");
-        customer.setCountry("Portugal");
         customer.setEmail("aramos@mail.com");
         customer.setFirstName("Ana");
         customer.setLastName("Ramos");
         customer.setPhoneNumber("966945019");
-        customer.setState("Lisbon");
-        customer.setZipCode("1150-246");
 
         User user = new User();
         String username = "aramos";

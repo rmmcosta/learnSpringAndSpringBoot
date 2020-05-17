@@ -10,3 +10,21 @@ the annotation @Transient
 
 - for one to one relationships with delete cascade
     @OneToOne(cascade = CascadeType.ALL)
+
+- embedded entities are useful for instance for addresses
+    -instead of declaring the address domain as @Entity
+    we declare it as @Embeddable
+    -then we can reuse that address anywhere we like
+        - we just need to use the annotation @Embedded
+    - Careful with the error 
+    Repeated column in mapping for entity: ... should be mapped with insert="false" update="false")
+    - we must use what is said here:
+    https://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/#d0e714
+    @Embedded
+    @AttributeOverrides( {
+            @AttributeOverride(name="city", column = @Column(name="fld_city") ),
+            @AttributeOverride(name="nationality.iso2", column = @Column(name="nat_Iso2") ),
+            @AttributeOverride(name="nationality.name", column = @Column(name="nat_CountryName") )
+            //nationality columns in homeAddress are overridden
+    } )
+    Address homeAddress;

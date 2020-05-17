@@ -42,29 +42,54 @@
                    placeholder="Enter email">
         </div>
         <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" th:field="*{address}"
-                   placeholder="Enter address">
+            <label for="billAddress">Bill Address</label>
+            <input type="text" class="form-control" id="billAddress" th:field="*{billingAddress.address}"
+                   placeholder="Enter bill address">
         </div>
         <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" class="form-control" id="city" th:field="*{city}"
-                   placeholder="Enter city">
+            <label for="billCity">Bill City</label>
+            <input type="text" class="form-control" id="billCity" th:field="*{billingAddress.city}"
+                   placeholder="Enter bill city">
         </div>
         <div class="form-group">
-            <label for="state">State</label>
-            <input type="text" class="form-control" id="state" th:field="*{state}"
-                   placeholder="Enter state">
+            <label for="billState">Bill State</label>
+            <input type="text" class="form-control" id="billState" th:field="*{billingAddress.state}"
+                   placeholder="Enter bill state">
         </div>
         <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text" class="form-control" id="country" th:field="*{country}"
-                   placeholder="Enter country">
+            <label for="billCountry">Bill Country</label>
+            <input type="text" class="form-control" id="billCountry" th:field="*{billingAddress.country}"
+                   placeholder="Enter bill country">
         </div>
         <div class="form-group">
-            <label for="zipCode">Zip-Code</label>
-            <input type="text" pattern="[0-9]{4}-[0-9]{3}" class="form-control" id="zipCode" th:field="*{zipCode}"
-                   placeholder="Enter zip-code">
+            <label for="billZipCode">Bill Zip-Code</label>
+            <input type="text" pattern="[0-9]{4}-[0-9]{3}" class="form-control" id="billZipCode" th:field="*{billingAddress.zipCode}"
+                   placeholder="Enter bill zip-code">
+        </div>
+        <div class="form-group">
+            <label for="shipAddress">Ship Address</label>
+            <input type="text" class="form-control" id="shipAddress" th:field="*{shippingAddress.address}"
+                   placeholder="Enter ship address">
+        </div>
+        <div class="form-group">
+            <label for="shipCity">Ship City</label>
+            <input type="text" class="form-control" id="shipCity" th:field="*{shippingAddress.city}"
+                   placeholder="Enter ship city">
+        </div>
+        <div class="form-group">
+            <label for="shipState">Ship State</label>
+            <input type="text" class="form-control" id="shipState" th:field="*{shippingAddress.state}"
+                   placeholder="Enter ship state">
+        </div>
+        <div class="form-group">
+            <label for="shipCountry">Ship Country</label>
+            <input type="text" class="form-control" id="shipCountry" th:field="*{shippingAddress.country}"
+                   placeholder="Enter ship country">
+        </div>
+        <div class="form-group">
+            <label for="shipZipCode">Ship Zip-Code</label>
+            <input type="text" pattern="[0-9]{4}-[0-9]{3}" class="form-control" id="shipZipCode" th:field="*{shippingAddress.zipCode}"
+                   placeholder="Enter ship zip-code">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
