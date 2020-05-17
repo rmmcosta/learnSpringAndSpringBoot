@@ -5,6 +5,7 @@ import com.rmmcosta.MyCrud.domain.Cart;
 import com.rmmcosta.MyCrud.domain.Customer;
 import com.rmmcosta.MyCrud.services.CartService;
 import com.rmmcosta.MyCrud.services.CustomerService;
+import com.rmmcosta.MyCrud.services.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
@@ -28,6 +29,10 @@ class CartControllerTest {
 
     @Mock
     private CartService cartService;
+    @Mock
+    private ProductService productService;
+    @Mock
+    private CustomerService customerService;
 
     @InjectMocks
     private CartController cartController;
@@ -97,7 +102,7 @@ class CartControllerTest {
     void newCart() {
         verifyNoInteractions(cartService);
         try {
-            mockMvc.perform(get("/cart/new")).
+            mockMvc.perform(get("/carts/new")).
                     andExpect(status().isOk()).
                     andExpect(view().name("/Cart/newCart")).
                     andExpect(model().attribute("cart", instanceOf(Cart.class)));

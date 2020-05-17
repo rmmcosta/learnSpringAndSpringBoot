@@ -1,6 +1,7 @@
 package com.rmmcosta.MyCrud.services.jpaServices;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
+import com.rmmcosta.MyCrud.domain.Product;
 import com.rmmcosta.MyCrud.domain.User;
 import com.rmmcosta.MyCrud.services.UserService;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,10 +22,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserServiceJpaDaoImplTest {
 
     private UserService userService;
+    private AbstractJpaService jpaService;
 
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+        this.jpaService = (AbstractJpaService) userService;
     }
 
     @Test
@@ -63,5 +68,17 @@ class UserServiceJpaDaoImplTest {
         int initialSize = userList.size();
         userService.deleteObject(userList.get(0).getId());
         assertEquals(initialSize - 1, userService.listAllObjects().size());
+    }
+
+    @Test
+    void testGetCount() throws DomainObjectNotFound {
+        int initCount = jpaService.getCount();
+        User user = new User();
+        String username = "aramos";
+        user.setUsername(username);
+        user.setPassword("123456");
+        User newUser = userService.createOrUpdateObject(user);
+        assertEquals(initCount+1,jpaService.getCount());
+        userService.deleteObject(newUser.getId());
     }
 }

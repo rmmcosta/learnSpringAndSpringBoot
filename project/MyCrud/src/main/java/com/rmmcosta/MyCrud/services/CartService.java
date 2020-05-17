@@ -9,4 +9,6 @@ public interface CartService extends CrudService<Cart> {
     List<Product> getCartProducts(int id);
 
     void addProduct(Cart cart);
+
+    int removeProduct(int cartId, int productId);
 }

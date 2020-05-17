@@ -1,6 +1,7 @@
 package com.rmmcosta.MyCrud.services.jpaServices;
 
 import com.rmmcosta.MyCrud.customExceptions.DomainObjectNotFound;
+import com.rmmcosta.MyCrud.domain.Cart;
 import com.rmmcosta.MyCrud.domain.Customer;
 import com.rmmcosta.MyCrud.domain.User;
 import com.rmmcosta.MyCrud.services.CustomerService;
@@ -22,10 +23,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class CustomerServiceJpaDaoImplTest {
     private CustomerService customerService;
     private UserService userService;
+    private AbstractJpaService jpaService;
 
     @Autowired
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
+        this.jpaService = (AbstractJpaService) customerService;
     }
 
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
@@ -147,6 +150,19 @@ class CustomerServiceJpaDaoImplTest {
         customerService.deleteObject(customerList.get(0).getId());
         customerList = (List<Customer>) customerService.listAllObjects();
         assertEquals(initSize-1,customerList.size());
+    }
+
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+    @Test
+    void testGetCount() throws DomainObjectNotFound {
+        int initCount = jpaService.getCount();
+        Customer customer = new Customer();
+        customer.setEmail("aramos@mail.com");
+        customer.setFirstName("Ana");
+        customer.setLastName("Ramos");
+        Customer newCustomer = customerService.createOrUpdateObject(customer);
+        assertEquals(initCount+1,jpaService.getCount());
+        customerService.deleteObject(newCustomer.getId());
     }
 
     @Autowired

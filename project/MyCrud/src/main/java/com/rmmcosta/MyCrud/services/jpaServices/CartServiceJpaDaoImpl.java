@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +63,9 @@ public class CartServiceJpaDaoImpl extends AbstractJpaService implements CartSer
 
     @Override
     int getCount() {
-        return entityManager.createNativeQuery("Select count(1) from Cart").getFirstResult();
+        return ((Number)entityManager.
+                createNativeQuery("Select count(1) from Cart").
+                getSingleResult()).intValue();
     }
 
     @Override
@@ -91,6 +92,17 @@ public class CartServiceJpaDaoImpl extends AbstractJpaService implements CartSer
 
     @Override
     public void addProduct(Cart cart) {
+        Query query = entityManager.createNativeQuery(
+                "Select count(1) FROM CART_PRODUCT_LIST c " +
+                        "WHERE c.cart_id = :cartId and c.product_list_id = :productId");
+        int count = ((Number) query.
+                setParameter("cartId", cart.getId()).
+                setParameter("productId", cart.getProductId()).
+                getSingleResult()).intValue();
+        System.out.println("my print: count="+count);
+        if (count > 0) {
+            return;
+        }
         entityManager.getTransaction().begin();
         System.out.println("my print: id = " + cart.getId());
         System.out.println("my print: product id = " + cart.getProductId());
@@ -99,5 +111,22 @@ public class CartServiceJpaDaoImpl extends AbstractJpaService implements CartSer
                 .setParameter(2, cart.getProductId())
                 .executeUpdate();
         entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public int removeProduct(int cartId, int productId) {
+        entityManager.getTransaction().begin();
+        System.out.println("my print: id = " + cartId);
+        System.out.println("my print: product id = " + productId);
+        Query query = entityManager.createNativeQuery(
+                "DELETE FROM CART_PRODUCT_LIST c " +
+                        "WHERE c.cart_id = :cartId and c.product_list_id = :productId");
+        int deletedCount = query.
+                setParameter("cartId", cartId).
+                setParameter("productId", productId).
+                executeUpdate();
+        System.out.println("my print: deleted count = " + deletedCount);
+        entityManager.getTransaction().commit();
+        return deletedCount;
     }
 }

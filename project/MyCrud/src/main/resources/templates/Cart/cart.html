@@ -56,7 +56,7 @@
                 <td th:text="${cartProduct.description}">This onions are really good.</td>
                 <td th:text="${cartProduct.price}">2.41</td>
                 <td><a
-                        th:href="${'/cartProduct/delete/'+cartProduct.id}">Delete</a></td>
+                        th:href="${'/cartProduct/delete/'+cart.id+'/'+cartProduct.id}">Delete</a></td>
             </tr>
             </tbody>
         </table>

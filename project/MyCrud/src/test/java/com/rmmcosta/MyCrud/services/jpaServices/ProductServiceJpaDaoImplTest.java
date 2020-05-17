@@ -25,10 +25,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ProductServiceJpaDaoImplTest {
 
     private ProductService productService;
+    private AbstractJpaService jpaService;
 
     @Autowired
     public void setProductService(ProductService productService) {
         this.productService = productService;
+        this.jpaService = (AbstractJpaService) productService;
     }
 
     @Test
@@ -65,5 +67,19 @@ class ProductServiceJpaDaoImplTest {
         productService.deleteObject(productList.get(0).getId());
         productList = (List<Product>) productService.listAllObjects();
         assertEquals(initSize-1,productList.size());
+    }
+
+    @Test
+    void testGetCount() throws DomainObjectNotFound {
+        int initCount = jpaService.getCount();
+        Product product = new Product();
+        product.setName("Jóia");
+        product.setDescription("a jóia do nilo");
+        product.setPrice(new BigDecimal("679.99"));
+        product.setImageUrl("https://cenas");
+        product.setCreatedOn(new Date());
+        Product newProduct = productService.createOrUpdateObject(product);
+        assertEquals(initCount+1,jpaService.getCount());
+        productService.deleteObject(newProduct.getId());
     }
 }

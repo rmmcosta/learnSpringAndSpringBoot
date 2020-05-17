@@ -60,6 +60,8 @@ public class ProductServiceJpaDaoImpl extends AbstractJpaService implements Prod
 
     @Override
     int getCount() {
-        return entityManager.createNativeQuery("Select count(1) from Product").getFirstResult();
+        return ((Number)entityManager.
+                createNativeQuery("Select count(1) from Product").
+                getSingleResult()).intValue();
     }
 }

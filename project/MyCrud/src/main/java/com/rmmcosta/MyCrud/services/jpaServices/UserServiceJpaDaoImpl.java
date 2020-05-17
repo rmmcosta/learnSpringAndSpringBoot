@@ -64,6 +64,8 @@ public class UserServiceJpaDaoImpl extends AbstractJpaService implements UserSer
 
     @Override
     int getCount() {
-        return entityManager.createNativeQuery("Select count(1) from User").getFirstResult();
+        return ((Number)entityManager.
+                createNativeQuery("Select count(1) from User").
+                getSingleResult()).intValue();
     }
 }

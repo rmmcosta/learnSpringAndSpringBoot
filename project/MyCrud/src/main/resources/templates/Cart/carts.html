@@ -26,8 +26,8 @@
             <tbody>
             <tr th:each="cart : ${carts}">
                 <th scope="row" th:text="${cart.id}"></th>
-                <td th:text="${customer.email}">rmmcosta@mail.com</td>
-                <td th:text="${cart.createOn}">2020-01-01 10:00:00</td>
+                <td th:text="${cart.customerEmail}">rmmcosta@mail.com</td>
+                <td th:text="${cart.createdOn}">2020-01-01 10:00:00</td>
                 <td><a th:href="${'/cart/'+cart.id}">View</a> | <a th:href="${'/cart/edit/'+cart.id}">Edit</a> | <a th:href="${'/cart/delete/'+cart.id}">Delete</a></td>
             </tr>
             </tbody>

@@ -54,6 +54,7 @@ public class CartController {
     public String editCart(Model model, @PathVariable int id) throws DomainObjectNotFound {
         model.addAttribute("cart", cartService.getObjectById(id));
         model.addAttribute("products", productService.listAllObjects());
+        model.addAttribute("customers", customerService.listAllObjects());
         return "/Cart/newCart";
     }
 
@@ -75,6 +76,13 @@ public class CartController {
     public String newCartProduct(Cart cart) {
         cartService.addProduct(cart);
         return "redirect:/cart/" + cart.getId();
+    }
+
+    @RequestMapping("/cartProduct/delete/{cartId}/{productId}")
+    public String deleteCartProduct(@PathVariable(name = "cartId") int cartId,
+                                    @PathVariable(name = "productId") int productId) {
+        cartService.removeProduct(cartId, productId);
+        return "redirect:/cart/" + cartId;
     }
 
     @RequestMapping("/cart/delete/{id}")

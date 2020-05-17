@@ -26,10 +26,12 @@ class CartServiceJpaDaoImplTest {
 
     private CustomerService customerService;
     private ProductService productService;
+    private AbstractJpaService jpaService;
 
     @Autowired
     public void setCartService(CartService cartService) {
         this.cartService = cartService;
+        this.jpaService = (AbstractJpaService) cartService;
     }
 
     @Autowired
@@ -44,14 +46,12 @@ class CartServiceJpaDaoImplTest {
 
     @Test
     void listAllObjects() {
-        AbstractJpaService jpaService = (AbstractJpaService) cartService;
         assertEquals(jpaService.getCount(), cartService.listAllObjects().size());
     }
 
     @Test
     void getObjectById() throws DomainObjectNotFound {
         Cart cart = new Cart();
-        Date cartDate = new Date();
         Customer customer = (Customer) customerService.listAllObjects().get(0);
         cart.setCustomerId(customer.getId());
         Cart newCart = cartService.createOrUpdateObject(cart);
@@ -79,10 +79,10 @@ class CartServiceJpaDaoImplTest {
         Cart cart = new Cart();
         Customer customer = (Customer) customerService.listAllObjects().get(0);
         cart.setCustomerId(customer.getId());
-        cartService.createOrUpdateObject(cart);
+        Cart newCart = cartService.createOrUpdateObject(cart);
         List<Cart> cartList = (List<Cart>) cartService.listAllObjects();
         int initialSize = cartList.size();
-        cartService.deleteObject(cartList.get(0).getId());
+        cartService.deleteObject(newCart.getId());
         assertEquals(initialSize - 1, cartService.listAllObjects().size());
     }
 
@@ -110,5 +110,32 @@ class CartServiceJpaDaoImplTest {
             System.out.println(p.getName());
         }
         assertEquals(1,cartProducts.size());
+    }
+
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+    @Test
+    void removeProduct() throws DomainObjectNotFound {
+        Cart cart = new Cart();
+        Customer customer = (Customer) customerService.listAllObjects().get(0);
+        cart.setCustomerId(customer.getId());
+        Cart newCart = cartService.createOrUpdateObject(cart);
+        Cart productCart = new Cart();
+        productCart.setId(newCart.getId());
+        Product product = (Product) productService.listAllObjects().get(0);
+        productCart.setProductId(product.getId());
+        cartService.addProduct(productCart);
+        int deletedCount = cartService.removeProduct(productCart.getId(), productCart.getProductId());
+        assertEquals(1, deletedCount);
+    }
+
+    @Test
+    void testGetCount() throws DomainObjectNotFound {
+        int initCount = jpaService.getCount();
+        Cart cart = new Cart();
+        Customer customer = (Customer) customerService.listAllObjects().get(0);
+        cart.setCustomerId(customer.getId());
+        Cart newCart = cartService.createOrUpdateObject(cart);
+        assertEquals(initCount+1,jpaService.getCount());
+        cartService.deleteObject(newCart.getId());
     }
 }

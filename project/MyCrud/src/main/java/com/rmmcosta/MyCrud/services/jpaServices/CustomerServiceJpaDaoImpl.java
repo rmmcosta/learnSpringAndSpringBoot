@@ -77,6 +77,8 @@ public class CustomerServiceJpaDaoImpl extends AbstractJpaService implements Cus
 
     @Override
     int getCount() {
-        return entityManager.createNativeQuery("Select count(1) from Customer").getFirstResult();
+        return ((Number)entityManager.
+                createNativeQuery("Select count(1) from Customer").
+                getSingleResult()).intValue();
     }
 }

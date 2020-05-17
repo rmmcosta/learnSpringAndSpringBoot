@@ -22,6 +22,9 @@ public class Cart implements DomainObject {
     @Transient
     private int productId;
 
+    @Transient
+    private String customerEmail;
+
     @ManyToOne(cascade = CascadeType.DETACH, optional = false)
     private Customer customer;
 
@@ -92,5 +95,9 @@ public class Cart implements DomainObject {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public String getCustomerEmail() {
+        return this.customer.getEmail();
     }
 }
