@@ -28,3 +28,27 @@ the annotation @Transient
             //nationality columns in homeAddress are overridden
     } )
     Address homeAddress;
+
+- for createdOn and updatedOn we can use jpa accelerators
+    @PreUpdate
+    @PrePersist
+    public void updateTimeStamps() {
+        updatedOn = new Date();
+        if(createdOn == null) {
+            createdOn = new Date();
+        }
+    }
+
+- when trying to go DRY take a look at the following annotation:
+    - @MappedSuperClass
+
+- when using enums create them in their own package
+    - enums
+
+- for many to many relationships we have the following annotations:
+    @ManyToMany
+    @JoinTable
+    - to do the exercise just go to the following link again:
+    https://www.udemy.com/course/spring-core/learn/lecture/4334636#overview
+    - the annotations must be used on both entity classes
+    
